@@ -11,7 +11,7 @@ class Person:
 
 class Client(Person):
     def __init__(self, first_name, last_name, passport_number, id_number, accounts=None):
-        super().__init__(f"{first_name} {last_name}", id_number)
+        super().__init__(first_name, last_name, id_number)
         self.first_name = first_name
         self.last_name = last_name
         self.passport_number = passport_number

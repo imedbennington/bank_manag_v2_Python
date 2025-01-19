@@ -4,10 +4,11 @@ from entities.person import Client, Employee
 from entities.department import Department, DepartmentManager
 from managments.account_management import AccountManager
 from managments.account_menu import account_management_menu
-
+from managments.clients_management import ClientManagement
+from managments.employee_management import EmployeeManagement
 def display_menu():
     print("\n--- Bank Management System ---")
-    print("1. Add Client")
+    print("1. Manage clients")
     print("2. Add Employee")
     print("3. Manage accounts")
     print("4. List Clients")
@@ -21,6 +22,7 @@ def main():
     bank = Bank()
     dep_manager = DepartmentManager()  # Instantiate DepartmentManager
     acc_manager = AccountManager()
+    client_manager = ClientManagement()
     departments = [dept.value for dept in Department]  # List of valid departments
     accounts = {}  # Dictionary to store accounts by account number
 
@@ -29,13 +31,14 @@ def main():
         choice = input("Enter your choice: ")
 
         if choice == "1":  # Add Client
-            client_id = input("Enter client ID: ")
+            """client_id = input("Enter client ID: ")
             passport_number = input("Enter passport number: ")
             first_name = input("Enter first name: ")
             last_name = input("Enter last name: ")
             client = Client(first_name, last_name, passport_number, client_id)
             bank.add_client(client)
-            print(f"Client {first_name} {last_name} added successfully!")
+            print(f"Client {first_name} {last_name} added successfully!")"""
+            client_manager.menu()
 
         elif choice == "2":  # Add Employee
             first_name = input("Enter employee first name: ")
