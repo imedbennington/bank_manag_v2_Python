@@ -3,7 +3,7 @@ class Account:
         self.account_id = account_id
         self._balance = balance  # Protected member
 
-    @property
+    @property #access functions like an attribute without parentheses.
     def balance(self):
         return self._balance
 
@@ -59,32 +59,39 @@ class BusinessAccount(Account):
 class AccountManager:
     def __init__(self):
         self.accounts = {}  # Dictionary to store accounts by account_id
-
     def create_account(self):
         print("\nSelect Account Type:")
         print("1. Savings Account")
         print("2. Checking Account")
         print("3. Business Account")
-        acc_type = input("Enter account type: ")
-        acc_id = input("Enter account ID: ")
-        initial_balance = float(input("Enter initial balance: "))
+    
+        acc_type = input("Enter account type (1/2/3): ").strip()
+
+        acc_id = input("Enter Account ID: ").strip()
+        initial_balance = float(input("Enter Initial Balance: "))
 
         if acc_id in self.accounts:
             print("Account ID already exists!")
             return
 
+        # Create the account based on the selected type
         if acc_type == "1":
             account = SavingsAccount(acc_id, initial_balance)
+            print(f"Savings Account {acc_id} created successfully.")
         elif acc_type == "2":
             account = CheckingAccount(acc_id, initial_balance)
+            print(f"Checking Account {acc_id} created successfully.")
         elif acc_type == "3":
             account = BusinessAccount(acc_id, initial_balance)
+            print(f"Business Account {acc_id} created successfully.")
         else:
-            print("Invalid account type!")
-            return
+            print("Invalid account type selected!")
+            return  # Exit without saving the account if the type is invalid
 
+        # Save the account in the dictionary
         self.accounts[acc_id] = account
-        print(f"Account {acc_id} created successfully!")
+
+
 
     def view_account(self):
         acc_id = input("Enter account ID: ")
